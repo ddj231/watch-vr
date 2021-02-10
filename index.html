@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<meta charset="UTF-8">
+
+		<!-- P5 libraries -->
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+		<script src="../p5/addons/p5.sound.min.js"></script>
+
+		<!-- A-Frame libraries -->
+		<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+		<!-- AFrameP5 library -->
+		<script src="https://craignyu.github.io/aframep5/libraries/aframep5.js"></script>
+
+		<!-- P5 Sketch -->
+		<script src="sketch.js"></script>
+
+		<!-- custom styles -->
+		<style>
+			body {
+				text-align: center;
+				font: 1rem 'Fira Sans', sans-serif;
+			}
+			label {
+			display: block;
+			font: 1rem 'Fira Sans', sans-serif;
+			}
+
+			input,
+			label {
+				margin: .4rem 0;
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- container to hold our VR scene - make sure to give this element an ID of 'VRScene' -->
+		<div id="startup">
+			<h1>Welcome to Watch VR!</h1>
+		<div id="startscreen"></div>
+		<label for="video">Choose a video to watch in a virtual space:</label>
+		
+		<input type="file" id="videopicker" accept=".mp4, .mov">
+		<br/>
+		<div>
+		<label for="usegaze">Use Gaze controls (recommended for use in VR)
+		<input type="radio" id="usegaze" name="mousecontrols" value="gaze"checked>
+		</label>
+		</div>
+
+		<div>
+		<label for="usemouse">Use Mouse controls
+		<input type="radio" id="usemouse" name="mousecontrols" value="mouse">
+		</label>
+		</div>
+
+		<button id="startbutton">Start</button>
+		</div>
+
+	    <a-scene id="VRScene" style="visibility: hidden;">
+	    	<!--
+		       The 'a-assets' container is used to load in any external artwork you may want to use as "textures" for your objects.
+		       Ensure that this element has an ID of 'VRAssets'
+
+		       Textures can be loaded by creating a new 'a-asset' tag inside of the 'a-assets' container.
+		       When doing this you will need to make sure to give your textures a unique ID -
+		       this will be used by p5 to create new objects.
+
+		       Example:
+
+		       <img id="ITEM_ID_GOES_HERE" src="images/gold_block.png">
+			-->
+			<a-assets id="VRAssets">
+			<img id="nextbtn" crossorigin="anonymous" src="./assets/nextButton-2.png">
+			<img id="nature1_360" crossorigin="anonymous" src="./assets/nature1.jpg">
+			<img id="nature2_360" crossorigin="anonymous" src="./assets/nature2.jpg">
+			<img id="nature3_360" crossorigin="anonymous" src="./assets/nature3.jpg">
+			<img id="nature5_360" crossorigin="anonymous" src="./assets/nature4.jpg">
+			<img id="nature4_360" crossorigin="anonymous" src="./assets/nature5.jpg">
+			<img id="nature6_360" crossorigin="anonymous" src="./assets/nature6.jpeg">
+			<img id="volumeon" crossorigin="anonymous" src="./assets/low-volume.png">
+			<img id="volumeoff" crossorigin="anonymous" src="./assets/mute-3.png">
+			<img id="play" crossorigin="anonymous" src="./assets/play.png">
+			<img id="pause" crossorigin="anonymous" src="./assets/pause.png">
+			<img id="backwards" crossorigin="anonymous" src="./assets/backwards.png">
+			<img id="crop" crossorigin="anonymous" src="./assets/crop.png">
+			<video id="myvideo" crossorigin="anonymous"></video>
+			<a-asset id="playobj" src="./assets/playButton3D.obj"></a-asset>
+			<a-asset id="playmtl" src="./assets/playButton3D.mtl"></a-asset>
+			<a-asset id="couchobj" src="./assets/couch.obj"></a-asset>
+			<a-asset id="couchmtl" src="./assets/couch.mtl"></a-asset>
+			<a-asset id="rugobj" src="./assets/rug.obj"></a-asset>
+			<a-asset id="rugmtl" src="./assets/rug.mtl"></a-asset>
+			<a-asset id="tvstandobj" src="./assets/tvstand.obj"></a-asset>
+			<a-asset id="tvstandmtl" src="./assets/tvstand.mtl"></a-asset>
+			<a-asset id="hardwoodfloor" src="./assets/hardwoodfloor.jpg"></a-asset>
+			</a-assets>
+			<a-sky id="sky" color="rgb(0,0,0)"></a-sky>
+			<a-video src="#myvideo" width="30" height="20" position="0 2.5 -2.5"></a-video>
+	    </a-scene>
+
+	</body>
+</html>
