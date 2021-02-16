@@ -27,7 +27,6 @@ let aframeVideoHeight = 0;
 
 
 function preload(){
-	bgSound = loadSound('./assets/background_sound.mp3');
 }
 
 function setup() {
