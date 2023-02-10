@@ -32,15 +32,11 @@ function preload(){
 function setup() {
 	// no canvas needed
 	noCanvas()
-	//createCanvas(600, 400).id('video')
-	//document.querySelector("#VRScene").style.visibility = 'visible';
 	
 	// construct the A-Frame world
 	// this function requires a reference to the ID of the 'a-scene' tag in our HTML document
 	world = new World('VRScene', interactionStyle);
-	//world.setMouseControls();
-	livingRoom = new Room(0, 0, 0)	
-	//document.querySelector("#loading").style.visibility = "hidden";
+	livingRoom = new Room(0, 0, 0)
 	world.add(livingRoom.room)
 	world.teleportToObject(livingRoom.startBlock)
 	let sky = document.querySelector("#sky")
@@ -124,17 +120,6 @@ class Room {
 			repeatY: 5 
 		})	
 
-		/*
-		this.tv = new Plane({
-			x: 0, 
-			y: 3,
-			z: -5,
-			height: 4,
-			width: 6,
-			asset: 'video',
-		})
-		*/
-
 		this.playButton = new Plane({
 			x: -1.5, 
 			y: 0.8,
@@ -145,14 +130,12 @@ class Room {
 			transparent: true,
 			clickFunction: (me) => {
 				if(playing){
-					//selectedVideo.pause();
 					playing = false;
 					me.setAsset("play");
 					let video = document.querySelector('#myvideo');
 					video.pause()
 				}
 				else {
-					//selectedVideo.play();
 					playing = true;
 					me.setAsset("pause");
 					let video = document.querySelector('#myvideo');
@@ -170,7 +153,6 @@ class Room {
 			asset: "backwards",
 			transparent: true,
 			clickFunction: (me) => {
-				//selectedVideo.pause();
 				let video = document.querySelector('#myvideo');
 				video.currentTime = video.currentTime - 15 < 0 ? 0 : video.currentTime - 15;
 			}
@@ -186,7 +168,6 @@ class Room {
 			rotationZ: 180,
 			transparent: true,
 			clickFunction: (me) => {
-				//selectedVideo.pause();
 				let video = document.querySelector('#myvideo');
 				video.currentTime = video.currentTime + 15 > video.duration ? video.duration : video.currentTime + 15;
 			}
@@ -213,9 +194,7 @@ class Room {
 
 		//location blocks
 		let blockLeft = new MovementBlock(-2, 1.5, 0)
-		//let blockCouchLeft = new MovementBlock(-0.5, 1.5, 0, 1000) 
 		let blockCouchMiddle = new MovementBlock(0.0, 1.5, 0, 1000)
-		//let blockCouchRight = new MovementBlock(0.5, 1.5, 0, 1000)
 		let blockRight = new MovementBlock(2, 1.5, 0)
 		this.startBlock = blockCouchMiddle.moveBlock;
 
@@ -224,16 +203,9 @@ class Room {
 		this.room.add(this.forwardsButton)
 		this.room.add(this.rotateButton)
 		this.room.add(bgPicker.backgroundPicker)
-		//this.room.add(this.tv)
 		this.room.add(this.playButton)
-		//this.room.add(this.tvstand)
 		this.room.add(this.rug)
 		this.room.add(this.couch)
-		//this.room.add(blockLeft.moveBlock)
-		//this.room.add(blockCouchLeft.moveBlock)
-		//this.room.add(blockCouchMiddle.moveBlock)
-		//this.room.add(blockCouchRight.moveBlock)
-		//this.room.add(blockRight.moveBlock)
 	}
 }
 
@@ -255,7 +227,6 @@ class BackgroundPicker {
 			height: 2,
 			width: 2.5,
 			clickFunction: () => {
-				//let sky = document.querySelector("#sky")
 				console.log(sky);
 				sky.setAttribute('src', "#" + imageIds[selectedInd]);
 				sky.removeAttribute('color');
@@ -274,12 +245,10 @@ class BackgroundPicker {
 				let video = document.querySelector('#myvideo');
 				if(me.getAsset() == "volumeoff"){
 					me.setAsset('volumeon')
-					//bgSound.loop();
 					video.muted = false;
 				}
 				else {
 					me.setAsset('volumeoff')
-					//bgSound.pause();
 					video.muted = true;
 				}
 			}
@@ -289,7 +258,6 @@ class BackgroundPicker {
 			x: -1.7,
 			y: 1.6,
 			z: -2.9,
-			//rotationZ: 180,
 			height: 0.5,
 			width: 0.5,
 			red: 255,
@@ -376,7 +344,6 @@ class ProgressBar {
 			z: z,
 			width: totalWidth,
 			height: 0.5,
-			//depth: 0.5,
 			red: 30,
 			green: 30, 
 			blue: 30, 
@@ -394,23 +361,12 @@ class ProgressBar {
 			clickFunction: () => {
 				clicking = true				
 				console.log("clicking")
-				//projectiles.push(new ProjectilePicker());
 			},
 			upFunction: (e) => {
 				clicking = false 
 				console.log("not clicking")
 				let pos = world.camera.cursor.getWorldPosition()
 				console.log(pos.x)
-				/*
-				if(pos.x < x){
-					let newX = pos.x < -1 *(totalWidth/2) ?  -1 * (totalWidth/2) : pos.x;
-					e.setX(newX)
-				}
-				else {
-					let newX = pos.x > (totalWidth/2) ? (totalWidth/2) : pos.x; 
-					e.setX(newX)
-				}
-				*/
 			},
 		})
 		this.container.add(this.backgroundBar);
@@ -453,11 +409,9 @@ function setAspectRatio(){
 	let avideo = document.querySelector('a-video');
 	console.log(height/width)
 	avideo.setAttribute('geometry', {height: aheight, width: awidth});
-	//avideo.setAttribute('width', awidth);
 	console.log(awidth)
 	shouldCreateProgressBar = true;
 	aframeVideoHeight = aheight;
-	//progressBar = new ProgressBar(0, 2.5 + (aheight/2), -2.5, 5);
 }
 
 function handleVideoEnded(){
